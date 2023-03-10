@@ -1,6 +1,6 @@
 import { ThemeProvider } from '@mui/material';
 import theme from './theme';
-import './App.css';
+import './assets/sass/appLayout.scss';
 
 function App() {
     return (<ThemeProvider theme={theme}></ThemeProvider>);
