@@ -1,9 +1,6 @@
-import {
-  Button,
-  MenuList,
-  Paper,
-  Popover,
-} from "@mui/material";
+import { Box, Button, Fade, MenuList, Paper, Popover } from "@mui/material";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import React, { useState } from "react";
 
 const ListItems = ({ children, text, popover }) => {
@@ -20,32 +17,50 @@ const ListItems = ({ children, text, popover }) => {
   const open = Boolean(anchorEl);
   const id = open ? "list-popover" : undefined;
   return (
-    <div>
+    <Box
+      onMouseEnter={popover ? (e) => handlePopoverOpen(e) : null}
+      onMouseLeave={popover ? (e) => handlePopoverClose(e) : null}
+      sx={{ position: "relative" }}
+    >
       <Button
         aria-describedby={id}
         variant="text"
-        onMouseEnter={popover ? handlePopoverOpen : null}
-        onMouseLeave={popover ? handlePopoverClose : null}
+        sx={{
+          "&:hover": { color: "primary.main" },
+          color: open ? "primary.main" : "secondary.main",
+          textTransform: "capitalize",
+        }}
       >
         {text}
+        {popover ? (
+          open ? (
+            <KeyboardArrowUpIcon fontSize="small" />
+          ) : (
+            <KeyboardArrowDownIcon fontSize="small" />
+          )
+        ) : null}
       </Button>
-      {popover ? (
-        <Popover
-          id={id}
-          open={open}
-          anchorEl={anchorEl}
-          onClose={handleClose}
-          anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "left",
-          }}
-        >
-          <Paper>
-            <MenuList>{children}</MenuList>
-          </Paper>
-        </Popover>
-      ) : null}
-    </div>
+      <Box
+        sx={{
+          position: "absolute",
+          top: "38px",
+          display: open ? "block" : "none",
+        }}
+      >
+        {popover ? (
+          <Fade in={open} timeout={500}>
+            <Paper
+              sx={{
+                boxShadow: "0 2px 12px 0 rgb(0 0 0 / 10%) !important",
+                borderRadius: "20px",
+              }}
+            >
+              <MenuList sx={{}}>{children}</MenuList>
+            </Paper>
+          </Fade>
+        ) : null}
+      </Box>
+    </Box>
   );
 };
 

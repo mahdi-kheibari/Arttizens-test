@@ -1,7 +1,11 @@
 import { Box } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
+import { store } from "../../../store/Context";
+import ListItems from "../../listItems/ListItems";
+import PopoverItem from "../../listItems/popoverItem/PopoverItem";
 
 const AppHeader = () => {
+  const { headerItems } = useContext(store);
   return (
     <Box
       component={"header"}
@@ -13,7 +17,7 @@ const AppHeader = () => {
         px: "10px",
       }}
     >
-      <div>
+      <Box display={"flex"}>
         <Box
           sx={{
             width: "122px",
@@ -21,13 +25,29 @@ const AppHeader = () => {
             background: "url('/logo-black.svg')",
             backgroundRepeat: "no-repeat",
             backgroundSize: "contain",
+            mr: "10px",
           }}
         ></Box>
-        
-      </div>
-      <div>
-
-      </div>
+        <Box sx={{ display: "flex" }}>
+          {headerItems.map((item) => (
+            <ListItems
+              key={item.text ? item.text : item}
+              text={item.text ? item.text : item}
+              popover={item.text ? true : false}
+            >
+              {item.text
+                ? item.menuItems.map((i) => (
+                    <PopoverItem
+                      key={i.text ? i.text : i}
+                      item={i}
+                    ></PopoverItem>
+                  ))
+                : null}
+            </ListItems>
+          ))}
+        </Box>
+      </Box>
+      <div></div>
     </Box>
   );
 };
