@@ -7,7 +7,9 @@ const PopoverItem = ({ item }) => {
     <MenuItem
       sx={{
         color: "gray.main",
-        "&:hover": { "& .popover-item-title": { color: "primary.main" } },
+        "&:hover": {
+          "& .popover-item-title": { color: "primary.main" },
+        },
       }}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}

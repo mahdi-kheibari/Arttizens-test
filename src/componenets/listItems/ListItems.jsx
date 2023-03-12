@@ -1,4 +1,4 @@
-import { Box, Button, Fade, MenuList, Paper, Popover } from "@mui/material";
+import { Box, Button, Fade, MenuList, Paper } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import React, { useState } from "react";
@@ -55,7 +55,7 @@ const ListItems = ({ children, text, popover }) => {
                 borderRadius: "20px",
               }}
             >
-              <MenuList sx={{}}>{children}</MenuList>
+              <MenuList>{children}</MenuList>
             </Paper>
           </Fade>
         ) : null}
