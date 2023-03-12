@@ -3,7 +3,7 @@ import theme from './theme';
 import Index from './page/index';
 import './appLayout.scss';
 import { Box } from '@mui/system';
-import AppHeader from './componenets/shared/appHeader/AppHeader';
+import AppHeader from './components/shared/appHeader/AppHeader';
 import Context from './store/Context';
 
 function App() {

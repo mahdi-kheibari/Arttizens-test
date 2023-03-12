@@ -58,6 +58,8 @@ const AppHeader = () => {
         alignItems: "center",
         height: "52px",
         px: "10px",
+        borderBottom: "1px solid",
+        borderBottomColor: "gray_light.main",
       }}
     >
       <Box display={"flex"}>

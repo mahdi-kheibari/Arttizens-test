@@ -17,8 +17,8 @@ const theme = createTheme({
         warning: { main: '#fd9350' },
         danger: { main: '#FB6072' },
         gray: { main: '#79797a' },
-        gray_light: { main: '#bcbcbd' },
-        light: { main: '#fefefe' },
+        gray_light: { main: '#e6e7eb' },
+        light: { main: '#F4F5F7' },
         dark: { main: '#2c3e50' },
         white: { main: '#fff' },
         muted: { main: '#6c757d' }
