@@ -7,6 +7,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import "./index.scss";
 import { ExpandMore } from "@mui/icons-material";
 import StarIcon from "@mui/icons-material/Star";
+import BookIcon from "@mui/icons-material/Book";
 const Index = () => {
   const [tagActive, setTagActive] = useState("All");
   const [navAreaActive, setNavAreaActive] = useState("USDT");
@@ -29,6 +30,8 @@ const Index = () => {
           display: { xs: "none", lg: "flex" },
           flexDirection: "column",
           borderBottomColor: "gray_light.main",
+          borderRight: "1px solid",
+          borderRightColor: "gray_light.main",
         }}
         lg={3}
         className="exchange-market"
@@ -233,6 +236,81 @@ const Index = () => {
               }}
             />
           </div>
+        </Box>
+      </Grid>
+      {/* exchange chart section */}
+      <Grid item lg={9} xs={12}>
+        <Box
+          className="exchange-ticker"
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
+          <Box sx={{ width: "80%", display: "flex", alignItems: "center" }}>
+            <img src="/images/BTC.png" alt="BTC" width="30px" height="30px" />
+            <Box sx={{ ml: 2, fontWeight: "bold" }} className="font-20">
+              BTC/UDT
+            </Box>
+            <ExpandMore fontSize="small" color="gray" sx={{ ml: "10px" }} />
+            <Box
+              sx={{ px: 1, fontWeight: "bold" }}
+              color="primary.main"
+              className="font-20"
+            >
+              22,088.89
+            </Box>
+            <Box
+              className="exchange-ticker-list"
+              sx={{ display: "flex", alignItems: "center" }}
+            >
+              <Box
+                className="exchange-ticker-list_item font-12"
+                sx={{ color: "gray.main" }}
+              >
+                24H Change
+              </Box>
+              <Box
+                className="exchange-ticker-list_item font-12"
+                sx={{ color: "gray.main" }}
+              >
+                24H Highest
+              </Box>
+              <Box
+                className="exchange-ticker-list_item font-12"
+                sx={{ color: "gray.main" }}
+              >
+                24H Lowest
+              </Box>
+              <Box
+                className="exchange-ticker-list_item font-12"
+                sx={{ color: "gray.main" }}
+              >
+                24H Volume
+              </Box>
+              <Box
+                className="exchange-ticker-list_item font-12"
+                sx={{ color: "gray.main" }}
+              >
+                24H Value
+              </Box>
+            </Box>
+          </Box>
+          <Box
+            sx={{ display: "flex", alignItems: "center" }}
+            className="exchange-ticker-info"
+          >
+            <BookIcon
+              fontSize="small"
+              color="primary"
+              sx={{ alignSelf: "flex-end" }}
+            />
+            <Box sx={{ color: "primary.main", ml: "2px", fontWeight: "bold" }}>
+              About Bitcoin
+            </Box>
+          </Box>
         </Box>
       </Grid>
     </Grid>

@@ -1,3 +1,4 @@
+// start exchange market section
 .exchange-market {
     display: flex;
     height: 100%;
@@ -65,3 +66,23 @@
     }
 
 }
+
+// end exchange market section
+// start exchange chart section
+.exchange-ticker {
+    padding: 0 15px 0 10px;
+    height: 60px;
+
+    &-list {
+        margin-left: 32px;
+
+        &_item {
+            padding: 0 12px 0 20px;
+        }
+    }
+    &-info{
+        margin: 0 25px;
+    }
+}
+
+// end exchange chart section
