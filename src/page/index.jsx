@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Grid from "@mui/material/Grid";
 import { Box } from "@mui/system";
+import { DataGrid } from "@mui/x-data-grid";
 import { IconButton, InputBase, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import "./index.scss";
@@ -9,6 +10,16 @@ import StarIcon from "@mui/icons-material/Star";
 const Index = () => {
   const [tagActive, setTagActive] = useState("All");
   const [navAreaActive, setNavAreaActive] = useState("USDT");
+  const exchangeListColumn = [
+    { field: "market", headerName: "Market", width: "50%" },
+    { field: "price", headerName: "Price", width: "20%" },
+    { field: "change", headerName: "24H Change", width: "30%" },
+  ];
+  const exchangeQuotaList = [
+    { field: "price", headerName: "Price(USDT)", width: "50%" },
+    { field: "amount", headerName: "Amount(STC)", width: "20%" },
+    { field: "time", headerName: "Time", width: "30%" },
+  ];
   return (
     <Grid container spacing={0}>
       {/* exchange market section */}
@@ -99,7 +110,9 @@ const Index = () => {
             </Box>
           </Box>
           <Box className="nav-area">
-            <StarIcon fontSize="small" color="gray" />
+            <div className="nav-area_icon">
+              <StarIcon fontSize="small" color="gray" />
+            </div>
             <Box
               sx={{
                 "&:hover": { color: "primary.main" },
@@ -153,6 +166,73 @@ const Index = () => {
               BCH
             </Box>
           </Box>
+        </Box>
+        <Box sx={{ display: "flex", flexDirection: "column" }}>
+          <div className="exchange-market-list">
+            <DataGrid
+              rows=""
+              columns={exchangeListColumn}
+              hideFooter
+              columnHeaderHeight={"auto"}
+              sx={{
+                "& .MuiDataGrid-columnHeaders": {
+                  width: "100%",
+                  p: "12px 16px 6px",
+                  fontSize: "12px",
+                  color: "gray.main",
+                  height: "auto",
+                },
+                "& .MuiDataGrid-columnHeadersInner": {
+                  width: "100%",
+                  "& > div": { width: "100%" },
+                },
+                "& [aria-label='Price']": {
+                  ml: "auto",
+                },
+                minHeight: "100%",
+                borderRight: "0",
+              }}
+            />
+          </div>
+          <div className="exchange-market-quota">
+            <Box
+              sx={{
+                px: 3,
+                height: "44px",
+                fontWeight: "bold",
+                display: "flex",
+                alignItems: "center",
+              }}
+              className="font-16"
+            >
+              Latest Execution
+            </Box>
+            <DataGrid
+              rows=""
+              columns={exchangeQuotaList}
+              hideFooter
+              columnHeaderHeight={"auto"}
+              sx={{
+                "& .MuiDataGrid-columnHeaders": {
+                  width: "100%",
+                  p: "0 16px 6px",
+                  fontSize: "12px",
+                  color: "gray.main",
+                  height: "auto",
+                },
+                "& .MuiDataGrid-columnHeadersInner": {
+                  width: "100%",
+                  "& > div": { width: "100%" },
+                },
+                "& [aria-label='Amount(STC)']": {
+                  ml: "auto",
+                },
+                minHeight: "100%",
+                borderRight: "0",
+                borderTop: "0",
+              }}
+            />
+          </div>
         </Box>
       </Grid>
     </Grid>

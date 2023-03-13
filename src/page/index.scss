@@ -25,6 +25,17 @@
                 font-weight: 500;
                 cursor: pointer;
             }
+
+            &_icon {
+                display: flex;
+                width: 24px;
+                height: 24px;
+                cursor: pointer;
+                background-color: #f7f8fa;
+                border-radius: 4px;
+                justify-content: center;
+                align-items: center;
+            }
         }
 
         & .tag-list {
@@ -45,5 +56,12 @@
         }
     }
 
+    &-list {
+        height: calc(100vh - 122px);
+    }
+
+    &-quota {
+        height: 350px;
+    }
 
 }
