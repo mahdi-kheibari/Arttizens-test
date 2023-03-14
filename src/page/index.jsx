@@ -326,7 +326,7 @@ const Index = () => {
         </Box>
         <Grid container spacing={0}>
           <Grid item xs={8}>
-            <CandlesChart></CandlesChart>
+            <CandlesChart volume={true}></CandlesChart>
           </Grid>
           <Grid item xs={4}></Grid>
         </Grid>

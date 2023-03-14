@@ -1,0 +1,15 @@
+.volume-value{
+    position: absolute;
+    top: 350px;
+    contain: content;
+    flex: 1 1 auto;
+    line-height: normal;
+    margin: 0 4px;
+    max-width: calc(100% - 8px);
+    padding-top: 4px;
+    pointer-events: none;
+    transform: translateZ(0);
+    -webkit-user-select: none;
+    user-select: none;
+    z-index: 6;
+}
