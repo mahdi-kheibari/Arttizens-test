@@ -8,18 +8,20 @@ import "./index.scss";
 import { ExpandMore } from "@mui/icons-material";
 import StarIcon from "@mui/icons-material/Star";
 import BookIcon from "@mui/icons-material/Book";
+import CandlesChart from "../components/lightWeightChart/CandlesChart";
 const Index = () => {
   const [tagActive, setTagActive] = useState("All");
   const [navAreaActive, setNavAreaActive] = useState("USDT");
+  const exchangeListRow = [];
   const exchangeListColumn = [
-    { field: "market", headerName: "Market", width: "50%" },
-    { field: "price", headerName: "Price", width: "20%" },
-    { field: "change", headerName: "24H Change", width: "30%" },
+    { field: "market", headerName: "Market" },
+    { field: "price", headerName: "Price" },
+    { field: "change", headerName: "24H Change" },
   ];
   const exchangeQuotaList = [
-    { field: "price", headerName: "Price(USDT)", width: "50%" },
-    { field: "amount", headerName: "Amount(STC)", width: "20%" },
-    { field: "time", headerName: "Time", width: "30%" },
+    { field: "price", headerName: "Price(USDT)" },
+    { field: "amount", headerName: "Amount(STC)" },
+    { field: "time", headerName: "Time" },
   ];
   return (
     <Grid container spacing={0}>
@@ -173,10 +175,9 @@ const Index = () => {
         <Box sx={{ display: "flex", flexDirection: "column" }}>
           <div className="exchange-market-list">
             <DataGrid
-              rows=""
+              rows={exchangeListRow}
               columns={exchangeListColumn}
               hideFooter
-              columnHeaderHeight={"auto"}
               sx={{
                 "& .MuiDataGrid-columnHeaders": {
                   width: "100%",
@@ -184,6 +185,11 @@ const Index = () => {
                   fontSize: "12px",
                   color: "gray.main",
                   height: "auto",
+                  minHeight: "auto !important",
+                  lineHeight: "normal !important",
+                },
+                "& .MuiDataGrid-columnHeader": {
+                  height: "auto !important",
                 },
                 "& .MuiDataGrid-columnHeadersInner": {
                   width: "100%",
@@ -211,10 +217,9 @@ const Index = () => {
               Latest Execution
             </Box>
             <DataGrid
-              rows=""
+              rows={exchangeListRow}
               columns={exchangeQuotaList}
               hideFooter
-              columnHeaderHeight={"auto"}
               sx={{
                 "& .MuiDataGrid-columnHeaders": {
                   width: "100%",
@@ -222,6 +227,11 @@ const Index = () => {
                   fontSize: "12px",
                   color: "gray.main",
                   height: "auto",
+                  minHeight: "auto !important",
+                  lineHeight: "normal !important",
+                },
+                "& .MuiDataGrid-columnHeader": {
+                  height: "auto !important",
                 },
                 "& .MuiDataGrid-columnHeadersInner": {
                   width: "100%",
@@ -247,6 +257,8 @@ const Index = () => {
             justifyContent: "space-between",
             alignItems: "center",
             width: "100%",
+            borderBottom: "1px solid",
+            borderBottomColor: "gray_light.main",
           }}
         >
           <Box sx={{ width: "80%", display: "flex", alignItems: "center" }}>
@@ -312,6 +324,12 @@ const Index = () => {
             </Box>
           </Box>
         </Box>
+        <Grid container spacing={0}>
+          <Grid item xs={8}>
+            <CandlesChart></CandlesChart>
+          </Grid>
+          <Grid item xs={4}></Grid>
+        </Grid>
       </Grid>
     </Grid>
   );
