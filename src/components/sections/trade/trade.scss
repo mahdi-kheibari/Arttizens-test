@@ -7,10 +7,6 @@
         justify-content: space-between;
         padding-left: 18px;
         padding-right: 18px;
-
-        &_tab {
-            padding: 0 12px;
-        }
     }
 
     &-placeholder {
@@ -35,6 +31,10 @@
             height: 48px;
         }
     }
+}
+
+.exchange-trade-header_tab {
+    padding: 0 12px;
 }
 
 // end exchange trade section

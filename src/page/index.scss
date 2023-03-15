@@ -89,43 +89,40 @@
 }
 
 // end exchange chart section
-// start exchange trade section
-.exchange-trade {
+// start exchange chart section
+.exchange-summary {
+    height: 450px;
+
+    @media (max-width: 768px) {
+        height: 100vh;
+    }
+
     &-header {
-        display: flex;
-        height: 46px;
+        padding: 0 20px;
+        border-top: 1px solid;
         border-bottom: 1px solid;
-        justify-content: space-between;
-        padding-left: 18px;
-        padding-right: 18px;
+        display: flex;
+        align-items: center;
+
+        &_item {
+            height: 50px !important;
+            padding: 0 14px !important;
+            line-height: 50px !important;
+        }
     }
 
-    &-placeholder {
-        padding: 12px 18px;
+    &-btn {
+        height: 55px;
 
-        &_tag {
-            height: 32px;
-            min-width: 120px;
-            font-size: 14px;
-            line-height: 32px;
-            text-align: center;
-            cursor: pointer;
-            border-radius: 4px;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        &_input {
-            padding: 0 20px !important;
-            height: 48px;
+        &_item {
+            height: 26px !important;
+            padding: 0 18px !important;
+            line-height: 26px !important;
+            @media (max-width: 768px) {
+                width: 50% !important;
+            }
         }
     }
 }
 
-.exchange-trade-header_tab {
-    padding: 0 12px;
-}
-
-// end exchange trade section
+// end exchange chart section

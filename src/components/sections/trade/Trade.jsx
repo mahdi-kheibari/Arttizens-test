@@ -72,7 +72,7 @@ const Trade = () => {
         <Box
           sx={{
             display: "flex",
-            alignItems: "center",
+            alignItems: "flex-end",
             overflow: "hidden",
             "&:hover": { overflowX: "scroll" },
           }}
