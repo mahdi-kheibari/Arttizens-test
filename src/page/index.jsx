@@ -2,26 +2,21 @@ import React, { useState } from "react";
 import Grid from "@mui/material/Grid";
 import { Box } from "@mui/system";
 import { DataGrid } from "@mui/x-data-grid";
-import { IconButton, InputBase, Paper, Slider, Button } from "@mui/material";
+import { IconButton, InputBase, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import "./index.scss";
 import { ExpandMore } from "@mui/icons-material";
 import StarIcon from "@mui/icons-material/Star";
 import BookIcon from "@mui/icons-material/Book";
-import DataSaverOffOutlinedIcon from "@mui/icons-material/DataSaverOffOutlined";
-import TuneOutlinedIcon from "@mui/icons-material/TuneOutlined";
-import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import CandlesChart from "../components/lightWeightChart/CandlesChart";
 import ExchangeBtn from "../components/exchangeBtn/ExchangeBtn";
 import ExchangeTab from "../components/exchangeTab/ExchangeTab";
-import ExchangeTextfield from "../components/exchangeTextfield/ExchangeTextfield";
-import LoginBtn from "../components/LoginBtn";
+import Orderbook from "../components/sections/orderbook/Orderbook";
+import MarketQuota from "../components/sections/marketQuota/MarketQuota";
+import Trade from "../components/sections/trade/Trade";
 const Index = () => {
   const [tagActive, setTagActive] = useState("All");
   const [navAreaActive, setNavAreaActive] = useState("USDT");
-  const [tradeHeaderActive, setTradeHeaderActive] = useState("Spot Trading");
-  const [tradeTagActive, setTradeTagActive] = useState("Limit");
-  const [advancedTagActive, setAdvancedTagActive] = useState("AL");
   const exchangeListRow = [];
   const exchangeListColumn = [
     { field: "market", headerName: "Market" },
@@ -163,46 +158,9 @@ const Index = () => {
             />
           </div>
           <div className="exchange-market-quota">
-            <Box
-              sx={{
-                px: 3,
-                height: "44px",
-                fontWeight: "bold",
-                display: "flex",
-                alignItems: "center",
-              }}
-              className="font-16"
-            >
-              Latest Execution
-            </Box>
-            <DataGrid
-              rows={exchangeListRow}
-              columns={exchangeQuotaList}
-              hideFooter
-              sx={{
-                "& .MuiDataGrid-columnHeaders": {
-                  width: "100%",
-                  p: "0 16px 6px",
-                  fontSize: "12px",
-                  color: "gray.main",
-                  height: "auto",
-                  minHeight: "auto !important",
-                  lineHeight: "normal !important",
-                },
-                "& .MuiDataGrid-columnHeader": {
-                  height: "auto !important",
-                },
-                "& .MuiDataGrid-columnHeadersInner": {
-                  width: "100%",
-                  "& > div": { width: "100%" },
-                },
-                "& [aria-label='Amount(STC)']": {
-                  ml: "auto",
-                },
-                minHeight: "100%",
-                borderRight: "0",
-                borderTop: "0",
-              }}
+            <MarketQuota
+              rowList={exchangeListRow}
+              columnsList={exchangeQuotaList}
             />
           </div>
         </Box>
@@ -220,7 +178,14 @@ const Index = () => {
             borderBottomColor: "gray_light.main",
           }}
         >
-          <Box sx={{ width: "80%", display: "flex", alignItems: "center" }}>
+          <Box
+            sx={{
+              width: { xs: "90%", md: "80%" },
+              display: "flex",
+              alignItems: "center",
+              overflowX: "scroll",
+            }}
+          >
             <img src="/images/BTC.png" alt="BTC" width="30px" height="30px" />
             <Box sx={{ ml: 2, fontWeight: "bold" }} className="font-20">
               BTC/UDT
@@ -278,7 +243,14 @@ const Index = () => {
               color="primary"
               sx={{ alignSelf: "flex-end" }}
             />
-            <Box sx={{ color: "primary.main", ml: "2px", fontWeight: "bold" }}>
+            <Box
+              sx={{
+                color: "primary.main",
+                ml: "2px",
+                fontWeight: "bold",
+                display: { xs: "none", md: "block" },
+              }}
+            >
               About Bitcoin
             </Box>
           </Box>
@@ -286,7 +258,8 @@ const Index = () => {
         <Grid container spacing={0} sx={{ height: "calc(100vh + 350px)" }}>
           <Grid
             item
-            xs={8}
+            xs={12}
+            md={8}
             sx={{
               borderRight: "1px solid",
               borderRightColor: "gray_light.main",
@@ -296,226 +269,43 @@ const Index = () => {
             <Box sx={{ width: "100%", height: "445px" }}>
               <CandlesChart></CandlesChart>
             </Box>
-            <Box className="exchange-trade">
-              <Box
-                className="exchange-trade-header"
-                sx={{ borderBottomColor: "gray_light.main" }}
-              >
-                <Box sx={{ display: "flex", pr: 3 }}>
-                  <ExchangeTab
-                    text={"Spot Trading"}
-                    activeState={tradeHeaderActive}
-                    setActiveState={(val) => setTradeHeaderActive(val)}
-                    class_name="exchange-trade-header_tab"
-                  />
-                  <ExchangeTab
-                    text={"Margin Trading*10"}
-                    activeState={tradeHeaderActive}
-                    setActiveState={(val) => setTradeHeaderActive(val)}
-                    class_name="exchange-trade-header_tab"
-                  />
-                </Box>
-                <Box sx={{ display: "flex", alignItems: "center" }}>
-                  <Box
-                    sx={{
-                      color: "primary.main",
-                      backgroundColor: "rgba(14, 173, 152, .1)",
-                      cursor: "pointer",
-                      p: 1,
-                      borderRadius: "4px",
-                      height: "32px",
-                    }}
-                  >
-                    <DataSaverOffOutlinedIcon color="primary.main" />
-                  </Box>
-                  <Box
-                    sx={{
-                      color: "primary.main",
-                      backgroundColor: "rgba(14, 173, 152, .1)",
-                      cursor: "pointer",
-                      ml: 2,
-                      p: 1,
-                      borderRadius: "4px",
-                      height: "32px",
-                    }}
-                  >
-                    <TuneOutlinedIcon color="primary.main" />
-                  </Box>
-                </Box>
-              </Box>
-              <Box className="exchange-trade-placeholder">
-                <Box sx={{ display: "flex", alignItems: "center" }}>
-                  <ExchangeBtn
-                    text="Limit"
-                    activeState={tradeTagActive}
-                    setActiveState={(val) => setTradeTagActive(val)}
-                    class_name="exchange-trade-placeholder_tag"
-                  />
-                  <ExchangeBtn
-                    text="Market"
-                    activeState={tradeTagActive}
-                    setActiveState={(val) => setTradeTagActive(val)}
-                    class_name="exchange-trade-placeholder_tag"
-                  />
-                  <ExchangeBtn
-                    text="Stop-Limit"
-                    activeState={tradeTagActive}
-                    setActiveState={(val) => setTradeTagActive(val)}
-                    class_name="exchange-trade-placeholder_tag"
-                  />
-                  <ExchangeBtn
-                    text="Stop-Market"
-                    activeState={tradeTagActive}
-                    setActiveState={(val) => setTradeTagActive(val)}
-                    class_name="exchange-trade-placeholder_tag"
-                  />
-                </Box>
-                <Box
-                  sx={{ display: "flex", alignItems: "center", mt: 3 }}
-                  className="font-14"
-                >
-                  <Box sx={{ color: "gray.main", fontWeight: "bold" }}>
-                    Advanced:
-                  </Box>
-                  <Box sx={{ ml: 1, display: "flex", alignItems: "center" }}>
-                    <ExchangeBtn
-                      text={"AL"}
-                      activeState={advancedTagActive}
-                      setActiveState={(val) => setAdvancedTagActive(val)}
-                      class_name=""
-                    >
-                      <span>AL</span>
-                      <ExpandMore fontSize="small" />
-                    </ExchangeBtn>
-                    <ExchangeBtn
-                      text={"M"}
-                      activeState={advancedTagActive}
-                      setActiveState={(val) => setAdvancedTagActive(val)}
-                      class_name=""
-                    />
-                    <ExchangeBtn
-                      text={"hidden"}
-                      activeState={advancedTagActive}
-                      setActiveState={(val) => setAdvancedTagActive(val)}
-                      class_name=""
-                    >
-                      <VisibilityOffOutlinedIcon fontSize="small" />
-                    </ExchangeBtn>
-                  </Box>
-                </Box>
-                <Box sx={{ mt: { xs: "14px", md: "10px" } }}>
-                  <Grid container spacing={4}>
-                    <Grid item xs={6}>
-                      <Box className="font-12" sx={{ color: "gray.main" }}>
-                        Available: -- USD
-                      </Box>
-                      <Box sx={{ mt: "12px" }}>
-                        <ExchangeTextfield
-                          prepend="Price"
-                          append="USDT"
-                          value={24656.42}
-                          class_name="exchange-trade-placeholder_input"
-                        />
-                      </Box>
-                      <Box sx={{ mt: "12px" }}>
-                        <ExchangeTextfield
-                          prepend="Amount"
-                          append="BTC"
-                          class_name="exchange-trade-placeholder_input"
-                        />
-                      </Box>
-                      <Slider
-                        defaultValue={0}
-                        getAriaValueText={(val) => `${val}%`}
-                        valueLabelDisplay="auto"
-                        step={25}
-                        marks
-                        min={0}
-                        max={100}
-                      />
-                      <ExchangeTextfield
-                        prepend="Value"
-                        append="USDT"
-                        class_name="exchange-trade-placeholder_input"
-                      />
-                      <Box sx={{ mt: "30px" }}>
-                        <LoginBtn />
-                      </Box>
-                    </Grid>
-                    <Grid item xs={6}>
-                      <Box className="font-12" sx={{ color: "gray.main" }}>
-                        Available: -- BTC
-                      </Box>
-                      <Box sx={{ mt: "12px" }}>
-                        <ExchangeTextfield
-                          prepend="Price"
-                          append="USDT"
-                          value={24656.42}
-                          class_name="exchange-trade-placeholder_input"
-                        />
-                      </Box>
-                      <Box sx={{ mt: "12px" }}>
-                        <ExchangeTextfield
-                          prepend="Amount"
-                          append="BTC"
-                          class_name="exchange-trade-placeholder_input"
-                        />
-                      </Box>
-                      <Slider
-                        defaultValue={0}
-                        getAriaValueText={(val) => `${val}%`}
-                        valueLabelDisplay="auto"
-                        step={25}
-                        marks
-                        min={0}
-                        max={100}
-                        color="warning"
-                      />
-                      <ExchangeTextfield
-                        prepend="Value"
-                        append="USDT"
-                        class_name="exchange-trade-placeholder_input"
-                      />
-                      <Box sx={{ mt: "30px" }}>
-                        <LoginBtn />
-                      </Box>
-                    </Grid>
-                  </Grid>
-                </Box>
-              </Box>
+            <Box sx={{ display: { xs: "none", lg: "block" } }}>
+              <Trade />
             </Box>
+            <Grid
+              sx={{ display: { xs: "none", md: "flex", lg: "none" } }}
+              container
+              spacing={0}
+            >
+              <Grid item md={6}>
+                <MarketQuota
+                  rowList={exchangeListRow}
+                  columnsList={exchangeQuotaList}
+                />
+              </Grid>
+              <Grid item md={6}>
+                <Orderbook
+                  rowList={exchangeListRow}
+                  columnsList={exchangeQuotaList}
+                />
+              </Grid>
+            </Grid>
           </Grid>
           {/* exchange orderbook section */}
-          <Grid item xs={4} sx={{ height: "100%" }}>
-            <DataGrid
-              rows={exchangeListRow}
-              columns={exchangeQuotaList}
-              hideFooter
-              sx={{
-                "& .MuiDataGrid-columnHeaders": {
-                  width: "100%",
-                  p: "0 16px 6px",
-                  fontSize: "12px",
-                  color: "gray.main",
-                  height: "auto",
-                  minHeight: "auto !important",
-                  lineHeight: "normal !important",
-                },
-                "& .MuiDataGrid-columnHeader": {
-                  height: "auto !important",
-                },
-                "& .MuiDataGrid-columnHeadersInner": {
-                  width: "100%",
-                  "& > div": { width: "100%" },
-                },
-                "& [aria-label='Amount(STC)']": {
-                  ml: "auto",
-                },
-                minHeight: "100%",
-                borderRight: "0",
-                borderTop: "0",
-              }}
-            />
+          <Grid
+            item
+            md={4}
+            sx={{ height: "100%", display: { xs: "none", md: "block" } }}
+          >
+            <Box sx={{ display: { xs: "none", lg: "block" } }}>
+              <Orderbook
+                rowList={exchangeListRow}
+                columnsList={exchangeQuotaList}
+              />
+            </Box>
+            <Box sx={{ display: { xs: "none", md: "block", lg: "none" } }}>
+              <Trade />
+            </Box>
           </Grid>
         </Grid>
       </Grid>
