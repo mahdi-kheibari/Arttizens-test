@@ -485,7 +485,38 @@ const Index = () => {
               </Box>
             </Box>
           </Grid>
-          <Grid item xs={4}></Grid>
+          {/* exchange orderbook section */}
+          <Grid item xs={4} sx={{ height: "100%" }}>
+            <DataGrid
+              rows={exchangeListRow}
+              columns={exchangeQuotaList}
+              hideFooter
+              sx={{
+                "& .MuiDataGrid-columnHeaders": {
+                  width: "100%",
+                  p: "0 16px 6px",
+                  fontSize: "12px",
+                  color: "gray.main",
+                  height: "auto",
+                  minHeight: "auto !important",
+                  lineHeight: "normal !important",
+                },
+                "& .MuiDataGrid-columnHeader": {
+                  height: "auto !important",
+                },
+                "& .MuiDataGrid-columnHeadersInner": {
+                  width: "100%",
+                  "& > div": { width: "100%" },
+                },
+                "& [aria-label='Amount(STC)']": {
+                  ml: "auto",
+                },
+                minHeight: "100%",
+                borderRight: "0",
+                borderTop: "0",
+              }}
+            />
+          </Grid>
         </Grid>
       </Grid>
     </Grid>
