@@ -376,13 +376,12 @@ const Index = () => {
         </Box>
         <Box
           sx={{
-            height: "100%",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
           }}
         >
-          <Box sx={{ display: "flex" }}>
+          <Box className="exchange-summary-login" sx={{ display: "flex" }}>
             <Box sx={{ color: "primary.main" }}>Log In</Box>
             <span>&nbsp;or&nbsp;</span>
             <Box sx={{ color: "primary.main" }}>Sign Up</Box>

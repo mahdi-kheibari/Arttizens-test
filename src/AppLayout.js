@@ -5,6 +5,7 @@ import './appLayout.scss';
 import { Box } from '@mui/system';
 import AppHeader from './components/shared/appHeader/AppHeader';
 import Context from './store/Context';
+import AppFooter from './components/shared/appFooter/AppFooter';
 
 function App() {
     return (
@@ -12,7 +13,6 @@ function App() {
             <ThemeProvider theme={theme}>
                 <Box sx={{
                     minHeight: "100%",
-                    position: "relative",
                     display: "flex",
                     flexDirection: "column",
                 }}>
@@ -22,6 +22,7 @@ function App() {
                     </Box>
                 </Box>
                 <Box sx={{ flexShrink: 0 }}>
+                    <AppFooter></AppFooter>
                 </Box>
             </ThemeProvider>
         </Context>

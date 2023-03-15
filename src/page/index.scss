@@ -92,6 +92,8 @@
 // start exchange chart section
 .exchange-summary {
     height: 450px;
+    position: relative;
+    margin-bottom: 1px;
 
     @media (max-width: 768px) {
         height: 100vh;
@@ -118,10 +120,18 @@
             height: 26px !important;
             padding: 0 18px !important;
             line-height: 26px !important;
+
             @media (max-width: 768px) {
                 width: 50% !important;
             }
         }
+    }
+
+    &-login {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
     }
 }
 
