@@ -2,16 +2,26 @@ import React, { useState } from "react";
 import Grid from "@mui/material/Grid";
 import { Box } from "@mui/system";
 import { DataGrid } from "@mui/x-data-grid";
-import { IconButton, InputBase, Paper } from "@mui/material";
+import { IconButton, InputBase, Paper, Slider, Button } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import "./index.scss";
 import { ExpandMore } from "@mui/icons-material";
 import StarIcon from "@mui/icons-material/Star";
 import BookIcon from "@mui/icons-material/Book";
+import DataSaverOffOutlinedIcon from "@mui/icons-material/DataSaverOffOutlined";
+import TuneOutlinedIcon from "@mui/icons-material/TuneOutlined";
+import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import CandlesChart from "../components/lightWeightChart/CandlesChart";
+import ExchangeBtn from "../components/exchangeBtn/ExchangeBtn";
+import ExchangeTab from "../components/exchangeTab/ExchangeTab";
+import ExchangeTextfield from "../components/exchangeTextfield/ExchangeTextfield";
+import LoginBtn from "../components/LoginBtn";
 const Index = () => {
   const [tagActive, setTagActive] = useState("All");
   const [navAreaActive, setNavAreaActive] = useState("USDT");
+  const [tradeHeaderActive, setTradeHeaderActive] = useState("Spot Trading");
+  const [tradeTagActive, setTradeTagActive] = useState("Limit");
+  const [advancedTagActive, setAdvancedTagActive] = useState("AL");
   const exchangeListRow = [];
   const exchangeListColumn = [
     { field: "market", headerName: "Market" },
@@ -24,7 +34,7 @@ const Index = () => {
     { field: "time", headerName: "Time" },
   ];
   return (
-    <Grid container spacing={0}>
+    <Grid container spacing={0} sx={{ alignItems: "stretch" }}>
       {/* exchange market section */}
       <Grid
         item
@@ -63,113 +73,62 @@ const Index = () => {
           sx={{ "& .tag-list": { "&:hover": { color: "primary.main" } } }}
         >
           <Box sx={{ display: "flex" }}>
-            <Box
-              className="tag-list"
-              sx={{
-                color: tagActive === "All" ? "primary.main" : "gray.main",
-                backgroundColor:
-                  tagActive === "All" ? "rgba(14, 173, 152, .1)" : "initial",
-              }}
-              onClick={() => setTagActive("All")}
-            >
-              All
-            </Box>
-            <Box
-              className="tag-list"
-              sx={{
-                color: tagActive === "AMM" ? "primary.main" : "gray.main",
-                backgroundColor:
-                  tagActive === "AMM" ? "rgba(14, 173, 152, .1)" : "initial",
-                ml: 2,
-              }}
-              onClick={() => setTagActive("AMM")}
-            >
-              AMM
-            </Box>
-            <Box
-              className="tag-list"
-              sx={{
-                color: tagActive === "Margin" ? "primary.main" : "gray.main",
-                backgroundColor:
-                  tagActive === "Margin" ? "rgba(14, 173, 152, .1)" : "initial",
-                ml: 2,
-              }}
-              onClick={() => setTagActive("Margin")}
-            >
-              Margin
-            </Box>
-            <Box
-              className="tag-list"
-              sx={{
-                color: tagActive === "AI" ? "primary.main" : "gray.main",
-                backgroundColor:
-                  tagActive === "AI" ? "rgba(14, 173, 152, .1)" : "initial",
-                display: "flex",
-                alignItems: "center",
-                ml: 2,
-              }}
-              onClick={() => setTagActive("AI")}
+            <ExchangeBtn
+              text={"All"}
+              activeState={tagActive}
+              setActiveState={(val) => setTagActive(val)}
+              class_name="tag-list"
+            />
+            <ExchangeBtn
+              text={"AMM"}
+              activeState={tagActive}
+              setActiveState={(val) => setTagActive(val)}
+              class_name="tag-list"
+            />
+            <ExchangeBtn
+              text={"Margin"}
+              activeState={tagActive}
+              setActiveState={(val) => setTagActive(val)}
+              class_name="tag-list"
+            />
+            <ExchangeBtn
+              text={"AI"}
+              activeState={tagActive}
+              setActiveState={(val) => setTagActive(val)}
+              class_name="tag-list"
             >
               <span>AI</span>
               <ExpandMore fontSize="small" />
-            </Box>
+            </ExchangeBtn>
           </Box>
           <Box className="nav-area">
             <div className="nav-area_icon">
               <StarIcon fontSize="small" color="gray" />
             </div>
-            <Box
-              sx={{
-                "&:hover": { color: "primary.main" },
-                color: navAreaActive === "USDT" ? "primary.main" : "initial",
-                borderBottom: navAreaActive === "USDT" ? "1px solid" : "0",
-                borderBottomColor: "primary.main",
-                ml: 3,
-              }}
-              className="nav-area_item"
-              onClick={() => setNavAreaActive("USDT")}
-            >
-              USDT
-            </Box>
-            <Box
-              sx={{
-                "&:hover": { color: "primary.main" },
-                color: navAreaActive === "USDC" ? "primary.main" : "initial",
-                borderBottom: navAreaActive === "USDC" ? "1px solid" : "0",
-                borderBottomColor: "primary.main",
-                ml: 3,
-              }}
-              className="nav-area_item"
-              onClick={() => setNavAreaActive("USDC")}
-            >
-              USDC
-            </Box>
-            <Box
-              sx={{
-                "&:hover": { color: "primary.main" },
-                color: navAreaActive === "BTC" ? "primary.main" : "initial",
-                borderBottom: navAreaActive === "BTC" ? "1px solid" : "0",
-                borderBottomColor: "primary.main",
-                ml: 3,
-              }}
-              className="nav-area_item"
-              onClick={() => setNavAreaActive("BTC")}
-            >
-              BTC
-            </Box>
-            <Box
-              sx={{
-                "&:hover": { color: "primary.main" },
-                color: navAreaActive === "BCH" ? "primary.main" : "initial",
-                borderBottom: navAreaActive === "BCH" ? "1px solid" : "0",
-                borderBottomColor: "primary.main",
-                ml: 3,
-              }}
-              className="nav-area_item"
-              onClick={() => setNavAreaActive("BCH")}
-            >
-              BCH
-            </Box>
+            <ExchangeTab
+              text={"USDT"}
+              activeState={navAreaActive}
+              setActiveState={(val) => setNavAreaActive(val)}
+              class_name="nav-area_item"
+            />
+            <ExchangeTab
+              text={"USDC"}
+              activeState={navAreaActive}
+              setActiveState={(val) => setNavAreaActive(val)}
+              class_name="nav-area_item"
+            />
+            <ExchangeTab
+              text={"BTC"}
+              activeState={navAreaActive}
+              setActiveState={(val) => setNavAreaActive(val)}
+              class_name="nav-area_item"
+            />
+            <ExchangeTab
+              text={"BCH"}
+              activeState={navAreaActive}
+              setActiveState={(val) => setNavAreaActive(val)}
+              class_name="nav-area_item"
+            />
           </Box>
         </Box>
         <Box sx={{ display: "flex", flexDirection: "column" }}>
@@ -324,9 +283,207 @@ const Index = () => {
             </Box>
           </Box>
         </Box>
-        <Grid container spacing={0}>
-          <Grid item xs={8}>
-            <CandlesChart volume={true}></CandlesChart>
+        <Grid container spacing={0} sx={{ height: "calc(100vh + 350px)" }}>
+          <Grid
+            item
+            xs={8}
+            sx={{
+              borderRight: "1px solid",
+              borderRightColor: "gray_light.main",
+              height: "100%",
+            }}
+          >
+            <Box sx={{ width: "100%", height: "445px" }}>
+              <CandlesChart></CandlesChart>
+            </Box>
+            <Box className="exchange-trade">
+              <Box
+                className="exchange-trade-header"
+                sx={{ borderBottomColor: "gray_light.main" }}
+              >
+                <Box sx={{ display: "flex", pr: 3 }}>
+                  <ExchangeTab
+                    text={"Spot Trading"}
+                    activeState={tradeHeaderActive}
+                    setActiveState={(val) => setTradeHeaderActive(val)}
+                    class_name="exchange-trade-header_tab"
+                  />
+                  <ExchangeTab
+                    text={"Margin Trading*10"}
+                    activeState={tradeHeaderActive}
+                    setActiveState={(val) => setTradeHeaderActive(val)}
+                    class_name="exchange-trade-header_tab"
+                  />
+                </Box>
+                <Box sx={{ display: "flex", alignItems: "center" }}>
+                  <Box
+                    sx={{
+                      color: "primary.main",
+                      backgroundColor: "rgba(14, 173, 152, .1)",
+                      cursor: "pointer",
+                      p: 1,
+                      borderRadius: "4px",
+                      height: "32px",
+                    }}
+                  >
+                    <DataSaverOffOutlinedIcon color="primary.main" />
+                  </Box>
+                  <Box
+                    sx={{
+                      color: "primary.main",
+                      backgroundColor: "rgba(14, 173, 152, .1)",
+                      cursor: "pointer",
+                      ml: 2,
+                      p: 1,
+                      borderRadius: "4px",
+                      height: "32px",
+                    }}
+                  >
+                    <TuneOutlinedIcon color="primary.main" />
+                  </Box>
+                </Box>
+              </Box>
+              <Box className="exchange-trade-placeholder">
+                <Box sx={{ display: "flex", alignItems: "center" }}>
+                  <ExchangeBtn
+                    text="Limit"
+                    activeState={tradeTagActive}
+                    setActiveState={(val) => setTradeTagActive(val)}
+                    class_name="exchange-trade-placeholder_tag"
+                  />
+                  <ExchangeBtn
+                    text="Market"
+                    activeState={tradeTagActive}
+                    setActiveState={(val) => setTradeTagActive(val)}
+                    class_name="exchange-trade-placeholder_tag"
+                  />
+                  <ExchangeBtn
+                    text="Stop-Limit"
+                    activeState={tradeTagActive}
+                    setActiveState={(val) => setTradeTagActive(val)}
+                    class_name="exchange-trade-placeholder_tag"
+                  />
+                  <ExchangeBtn
+                    text="Stop-Market"
+                    activeState={tradeTagActive}
+                    setActiveState={(val) => setTradeTagActive(val)}
+                    class_name="exchange-trade-placeholder_tag"
+                  />
+                </Box>
+                <Box
+                  sx={{ display: "flex", alignItems: "center", mt: 3 }}
+                  className="font-14"
+                >
+                  <Box sx={{ color: "gray.main", fontWeight: "bold" }}>
+                    Advanced:
+                  </Box>
+                  <Box sx={{ ml: 1, display: "flex", alignItems: "center" }}>
+                    <ExchangeBtn
+                      text={"AL"}
+                      activeState={advancedTagActive}
+                      setActiveState={(val) => setAdvancedTagActive(val)}
+                      class_name=""
+                    >
+                      <span>AL</span>
+                      <ExpandMore fontSize="small" />
+                    </ExchangeBtn>
+                    <ExchangeBtn
+                      text={"M"}
+                      activeState={advancedTagActive}
+                      setActiveState={(val) => setAdvancedTagActive(val)}
+                      class_name=""
+                    />
+                    <ExchangeBtn
+                      text={"hidden"}
+                      activeState={advancedTagActive}
+                      setActiveState={(val) => setAdvancedTagActive(val)}
+                      class_name=""
+                    >
+                      <VisibilityOffOutlinedIcon fontSize="small" />
+                    </ExchangeBtn>
+                  </Box>
+                </Box>
+                <Box sx={{ mt: { xs: "14px", md: "10px" } }}>
+                  <Grid container spacing={4}>
+                    <Grid item xs={6}>
+                      <Box className="font-12" sx={{ color: "gray.main" }}>
+                        Available: -- USD
+                      </Box>
+                      <Box sx={{ mt: "12px" }}>
+                        <ExchangeTextfield
+                          prepend="Price"
+                          append="USDT"
+                          value={24656.42}
+                          class_name="exchange-trade-placeholder_input"
+                        />
+                      </Box>
+                      <Box sx={{ mt: "12px" }}>
+                        <ExchangeTextfield
+                          prepend="Amount"
+                          append="BTC"
+                          class_name="exchange-trade-placeholder_input"
+                        />
+                      </Box>
+                      <Slider
+                        defaultValue={0}
+                        getAriaValueText={(val) => `${val}%`}
+                        valueLabelDisplay="auto"
+                        step={25}
+                        marks
+                        min={0}
+                        max={100}
+                      />
+                      <ExchangeTextfield
+                        prepend="Value"
+                        append="USDT"
+                        class_name="exchange-trade-placeholder_input"
+                      />
+                      <Box sx={{ mt: "30px" }}>
+                        <LoginBtn />
+                      </Box>
+                    </Grid>
+                    <Grid item xs={6}>
+                      <Box className="font-12" sx={{ color: "gray.main" }}>
+                        Available: -- BTC
+                      </Box>
+                      <Box sx={{ mt: "12px" }}>
+                        <ExchangeTextfield
+                          prepend="Price"
+                          append="USDT"
+                          value={24656.42}
+                          class_name="exchange-trade-placeholder_input"
+                        />
+                      </Box>
+                      <Box sx={{ mt: "12px" }}>
+                        <ExchangeTextfield
+                          prepend="Amount"
+                          append="BTC"
+                          class_name="exchange-trade-placeholder_input"
+                        />
+                      </Box>
+                      <Slider
+                        defaultValue={0}
+                        getAriaValueText={(val) => `${val}%`}
+                        valueLabelDisplay="auto"
+                        step={25}
+                        marks
+                        min={0}
+                        max={100}
+                        color="warning"
+                      />
+                      <ExchangeTextfield
+                        prepend="Value"
+                        append="USDT"
+                        class_name="exchange-trade-placeholder_input"
+                      />
+                      <Box sx={{ mt: "30px" }}>
+                        <LoginBtn />
+                      </Box>
+                    </Grid>
+                  </Grid>
+                </Box>
+              </Box>
+            </Box>
           </Grid>
           <Grid item xs={4}></Grid>
         </Grid>
