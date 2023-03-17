@@ -4,14 +4,16 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import Crop32OutlinedIcon from "@mui/icons-material/Crop32Outlined";
 import CropDinOutlinedIcon from "@mui/icons-material/CropDinOutlined";
 import "./candlesChart.scss";
+import { useTheme } from "@mui/material";
 const CandlesChart = (props) => {
+  const theme = useTheme();
   const [volumeValue, setVolumeValue] = useState(0);
   const [volume, setVolume] = useState(true);
   const {
     data = [],
     colors: {
-      backgroundColor = "#F4F5F7",
-      textColor = "#79797a",
+      backgroundColor = theme.palette.mode === "light" ? "#F4F5F7" : "#1a191f",
+      textColor = theme.palette.mode === "light" ? "#79797a" : "#909399",
       upColor = "#0EAD98",
       downColor = "#FA5252",
       borderDownColor = "#FA5252",
@@ -35,10 +37,10 @@ const CandlesChart = (props) => {
       height: 350,
       grid: {
         vertLines: {
-          color: "#F4F5F7",
+          color: theme.palette.mode === "light" ? "#F4F5F7" : "#212329",
         },
         horzLines: {
-          color: "#F4F5F7",
+          color: theme.palette.mode === "light" ? "#F4F5F7" : "#212329",
         },
       },
       crosshair: {
@@ -46,10 +48,10 @@ const CandlesChart = (props) => {
       },
     });
     chart.priceScale("right").applyOptions({
-      borderColor: "#e6e7eb",
+      borderColor: theme.palette.mode === "light" ? "#e6e7eb" : "#212329",
     });
     chart.timeScale().applyOptions({
-      borderColor: "#e6e7eb",
+      borderColor: theme.palette.mode === "light" ? "#e6e7eb" : "#212329",
     });
     chart.timeScale().fitContent();
     const newSeries = chart.addCandlestickSeries({
@@ -72,10 +74,10 @@ const CandlesChart = (props) => {
         height: volumeContainerRef.current.clientHeight,
         grid: {
           vertLines: {
-            color: "#F4F5F7",
+            color: theme.palette.mode === "light" ? "#F4F5F7" : "#212329",
           },
           horzLines: {
-            color: "#F4F5F7",
+            color: theme.palette.mode === "light" ? "#F4F5F7" : "#212329",
           },
         },
         crosshair: {
@@ -97,10 +99,10 @@ const CandlesChart = (props) => {
         visible: false,
       });
       volumeChart.priceScale("right").applyOptions({
-        borderColor: "#e6e7eb",
+        borderColor: theme.palette.mode === "light" ? "#e6e7eb" : "#212329",
       });
       volumeChart.timeScale().applyOptions({
-        borderColor: "#e6e7eb",
+        borderColor: theme.palette.mode === "light" ? "#e6e7eb" : "#212329",
       });
     }
     // create data for test
@@ -180,6 +182,7 @@ const CandlesChart = (props) => {
     wickDownColor,
     wickUpColor,
     volume,
+    theme.palette.mode,
   ]);
 
   return (
@@ -198,7 +201,9 @@ const CandlesChart = (props) => {
             top: "4px",
             right: "62px",
             zIndex: 3,
-            bgcolor: "white.main",
+            bgcolor: theme.palette.mode === "dark" ? "dark.main" : "white.main",
+            border: "1px solid",
+            borderColor: "gray_light.main",
           }}
           onClick={() => setVolume(!volume)}
         >

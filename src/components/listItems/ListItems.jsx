@@ -43,7 +43,8 @@ const ListItems = ({ children, text, popover }) => {
       <Box
         sx={{
           position: "absolute",
-          top: "38px",
+          zIndex: 10,
+          top: "37.5px",
           display: open ? "block" : "none",
         }}
       >
@@ -55,7 +56,11 @@ const ListItems = ({ children, text, popover }) => {
                 borderRadius: "20px",
               }}
             >
-              <MenuList>{children}</MenuList>
+              <MenuList
+                sx={{ "& .MuiMenuItem-root": { color: "text.primary" } }}
+              >
+                {children}
+              </MenuList>
             </Paper>
           </Fade>
         ) : null}

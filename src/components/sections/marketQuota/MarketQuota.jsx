@@ -12,6 +12,7 @@ const MarketQuota = ({columnsList,rowList}) => {
           fontWeight: "bold",
           display: "flex",
           alignItems: "center",
+          color:"text.primary"
         }}
         className="font-16"
       >
@@ -30,6 +31,7 @@ const MarketQuota = ({columnsList,rowList}) => {
             height: "auto",
             minHeight: "auto !important",
             lineHeight: "normal !important",
+            borderColor: "gray_light.main",
           },
           "& .MuiDataGrid-columnHeader": {
             height: "auto !important",
@@ -44,6 +46,7 @@ const MarketQuota = ({columnsList,rowList}) => {
           minHeight: "100%",
           borderRight: "0",
           borderTop: "0",
+          borderColor: "gray_light.main",
         }}
       />
     </>

@@ -3,7 +3,24 @@ import { Slider } from "@mui/material";
 import { Box } from "@mui/system";
 import ExchangeTextfield from "../../../exchangeTextfield/ExchangeTextfield";
 
-const Margin = ({class_name}) => {
+const Margin = ({ class_name }) => {
+  const marks = [
+    {
+      value: 0,
+    },
+    {
+      value: 25,
+    },
+    {
+      value: 50,
+    },
+    {
+      value: 75,
+    },
+    {
+      value: 100,
+    },
+  ];
   return (
     <>
       <Box className="font-12" sx={{ color: "gray.main" }}>
@@ -28,8 +45,8 @@ const Margin = ({class_name}) => {
         defaultValue={0}
         getAriaValueText={(val) => `${val}%`}
         valueLabelDisplay="auto"
-        step={25}
-        marks
+        step={1}
+        marks={marks}
         min={0}
         max={100}
         color="warning"

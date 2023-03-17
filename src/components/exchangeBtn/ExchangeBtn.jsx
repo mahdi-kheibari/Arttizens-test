@@ -17,17 +17,21 @@ const ExchangeBtn = ({
           bgcolor: "rgba(14, 173, 152, .1) !important",
         },
         color: activeState === text ? "primary.main" : "gray.main",
-        bgcolor:
-          activeState === text
+        bgcolor: (theme) =>
+          theme.palette.mode === "light"
+            ? activeState === text
+              ? "rgba(14, 173, 152, .1) !important"
+              : "gray_light.main"
+            : activeState === text
             ? "rgba(14, 173, 152, .1) !important"
-            : "gray_light.main",
+            : "#1f2229 !important",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         mx: 2,
-        borderRadius:"4px",
-        p:1,
-        cursor:"pointer"
+        borderRadius: "4px",
+        p: 1,
+        cursor: "pointer",
       }}
       onClick={() => setActiveState(text)}
     >

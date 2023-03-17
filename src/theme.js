@@ -8,21 +8,6 @@ const typographyVariants = {
     fontWeightLight: 300,
 }
 const theme = createTheme({
-    palette: {
-        primary: { main: '#0cae96' },
-        primary_light: { main: '#6cfbdb' },
-        secondary: { main: '#28272c' },
-        success: { main: '#22C157' },
-        info: { main: '#6072FB' },
-        warning: { main: '#fd9350' },
-        danger: { main: '#FB6072' },
-        gray: { main: '#79797a' },
-        gray_light: { main: '#e6e7eb' },
-        light: { main: '#F4F5F7' },
-        dark: { main: '#2c3e50' },
-        white: { main: '#fff' },
-        muted: { main: '#6c757d' }
-    },
     spacing: (factor) => `${0.25 * factor}rem`,
     breakpoints: {
         keys: ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'],
@@ -90,4 +75,97 @@ const ContainerFixed = {
     },
 }
 theme.components.MuiContainer.styleOverrides.fixed['&.MuiContainer-fixed'] = ContainerFixed;
+export const getDesignPalette = (mode) => ({
+    palette: {
+        ...theme.palette,
+        mode,
+        ...(mode === "light"
+            ? {
+                // palette values for light mode
+                primary: { main: '#0cae96' },
+                primary_light: { main: '#6cfbdb' },
+                secondary: { main: '#28272c' },
+                success: { main: '#22C157' },
+                info: { main: '#6072FB' },
+                warning: { main: '#fd9350' },
+                danger: { main: '#FB6072' },
+                gray: { main: '#79797a' },
+                gray_light: { main: '#e6e7eb' },
+                bgColor: { main: '#F4F5F7' },
+                light: { main: '#fff' },
+                dark: { main: '#1f2229' },
+                white: { main: '#fff' },
+                muted: { main: '#6c757d' },
+                text: {
+                    ...theme.palette.text,
+                    primary: "#28272c",
+                    secondary: "#28272c"
+                },
+                background: {
+                    ...theme.palette.background,
+                    default: "#F4F5F7",
+                    paper: "#F4F5F7"
+                },
+                action: {
+                    ...theme.palette.action,
+                    activatedOpacity: 0.12,
+                    active: "rgba(40, 39, 44, 0.54)",
+                    disabled: "rgba(40, 39, 44, 0.26)",
+                    disabledBackground: "rgba(40, 39, 44, 0.12)",
+                    disabledOpacity: 0.38,
+                    focus: "rgba(40, 39, 44, 0.12)",
+                    focusOpacity: 0.12,
+                    hover: "rgba(40, 39, 44, 0.04)",
+                    hoverOpacity: 0.04,
+                    selected: "rgba(40, 39, 44, 0.08)",
+                    selectedOpacity: 0.08
+                }
+            }
+            : {
+                // palette values for dark mode
+                primary: { main: '#0cae96' },
+                primary_light: { main: '#6cfbdb' },
+                secondary: { main: '#f9fbfe' },
+                success: { main: '#22C157' },
+                info: { main: '#6072FB' },
+                warning: { main: '#fd9150' },
+                danger: { main: '#FB6072' },
+                gray: { main: '#909399' },
+                gray_light: { main: '#212329' },
+                bgColor: { main: '#1a191f' },
+                light: { main: '#fff' },
+                dark: { main: '#1f2229' },
+                white: { main: '#fff' },
+                muted: { main: '#6c757d' },
+                text: {
+                    ...theme.palette.text,
+                    primary: "#f9fbfe",
+                    secondary: "#f9fbfe"
+                },
+                background: {
+                    ...theme.palette.background,
+                    default: "#1a191f",
+                    paper: "#1a191f"
+                },
+                common: {
+                    black: "#000",
+                    white: "#fff"
+                },
+                action: {
+                    ...theme.palette.action,
+                    activatedOpacity: 0.12,
+                    active: "rgba(249, 251, 254, 0.54)",
+                    disabled: "rgba(249, 251, 254, 0.26)",
+                    disabledBackground: "rgba(249, 251, 254, 0.12)",
+                    disabledOpacity: 0.38,
+                    focus: "rgba(249, 251, 254, 0.12)",
+                    focusOpacity: 0.12,
+                    hover: "rgba(249, 251, 254, 0.04)",
+                    hoverOpacity: 0.04,
+                    selected: "rgba(249, 251, 254, 0.08)",
+                    selectedOpacity: 0.08
+                }
+            }),
+    }
+});
 export default theme;

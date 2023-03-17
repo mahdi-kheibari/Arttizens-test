@@ -16,6 +16,7 @@ const Orderbook = ({columnsList,rowList}) => {
           height: "auto",
           minHeight: "auto !important",
           lineHeight: "normal !important",
+          borderColor: "gray_light.main",
         },
         "& .MuiDataGrid-columnHeader": {
           height: "auto !important",
@@ -30,6 +31,7 @@ const Orderbook = ({columnsList,rowList}) => {
         minHeight: "100%",
         borderRight: "0",
         borderTop: "0",
+        borderColor: "gray_light.main",
       }}
     />
   );

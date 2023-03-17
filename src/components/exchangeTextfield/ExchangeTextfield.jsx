@@ -1,6 +1,6 @@
 import { Box, InputBase, Paper } from "@mui/material";
 import React from "react";
-import './exchangeTextfield.scss'
+import "./exchangeTextfield.scss";
 const ExchangeTextfield = ({ prepend, append, value, class_name }) => {
   return (
     <Paper
@@ -14,8 +14,10 @@ const ExchangeTextfield = ({ prepend, append, value, class_name }) => {
         borderRadius: "4px",
         border: "1px solid",
         borderColor: "light.main",
-        px:"20px",
-        py:0,
+        px: "20px",
+        py: 0,
+        borderColor: (theme) =>
+          theme.palette.mode === "light" ? "light.main" : "dark.main",
         "&:hover": {
           borderColor: "primary.main",
         },

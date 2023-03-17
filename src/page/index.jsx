@@ -55,7 +55,8 @@ const Index = () => {
                 alignItems: "center",
                 width: "100%",
                 padding: "0 12px",
-                backgroundColor: "#fff",
+                backgroundColor: (theme) =>
+                  theme.palette.mode === "dark" ? "dark.main" : "light.main",
                 borderRadius: "8px",
               }}
               elevation={0}
@@ -100,9 +101,15 @@ const Index = () => {
               </ExchangeBtn>
             </Box>
             <Box className="nav-area">
-              <div className="nav-area_icon">
+              <Box
+                sx={{
+                  bgcolor: (theme) =>
+                    theme.palette.mode === "dark" ? "dark.main" : "#f7f8fa",
+                }}
+                className="nav-area_icon"
+              >
                 <StarIcon fontSize="small" color="gray" />
-              </div>
+              </Box>
               <ExchangeTab
                 text={"USDT"}
                 activeState={navAreaActive}
@@ -144,6 +151,7 @@ const Index = () => {
                     height: "auto",
                     minHeight: "auto !important",
                     lineHeight: "normal !important",
+                    borderColor: "gray_light.main",
                   },
                   "& .MuiDataGrid-columnHeader": {
                     height: "auto !important",
@@ -157,6 +165,7 @@ const Index = () => {
                   },
                   minHeight: "100%",
                   borderRight: "0",
+                  borderColor: "gray_light.main",
                 }}
               />
             </div>
@@ -186,11 +195,33 @@ const Index = () => {
                 width: { xs: "90%", md: "80%" },
                 display: "flex",
                 alignItems: "center",
-                overflowX: "scroll",
+                overflow: "hidden",
+                "&:hover": {
+                  overflowX: "scroll",
+                },
+                "&::-webkit-scrollbar": {
+                  width: "5px",
+                },
+                "&::-webkit-scrollbar-thumb": {
+                  background: (theme) =>
+                    theme.palette.mode === "dark" ? "#909399" : "#79797a",
+                  "&:hover": {
+                    background: (theme) =>
+                      theme.palette.mode === "dark" ? "#212329" : "#e6e7eb",
+                  },
+                },
+                "&::-webkit-scrollbar-track": {
+                  background: (theme) =>
+                    theme.palette.mode === "dark" ? "#1f2229" : "#fff",
+                },
               }}
+              className="test1"
             >
               <img src="/images/BTC.png" alt="BTC" width="30px" height="30px" />
-              <Box sx={{ ml: 2, fontWeight: "bold" }} className="font-20">
+              <Box
+                sx={{ ml: 2, fontWeight: "bold", color: "text.primary" }}
+                className="font-20"
+              >
                 BTC/UDT
               </Box>
               <ExpandMore fontSize="small" color="gray" sx={{ ml: "10px" }} />
@@ -279,7 +310,25 @@ const Index = () => {
               <Box
                 sx={{
                   display: { xs: "none", lg: "block" },
-                  overflowY: "scroll",
+                  overflow: "hidden",
+                  "&:hover": {
+                    overflowY: "scroll",
+                  },
+                  "&::-webkit-scrollbar": {
+                    width: "5px",
+                  },
+                  "&::-webkit-scrollbar-thumb": {
+                    background: (theme) =>
+                      theme.palette.mode === "dark" ? "#909399" : "#79797a",
+                    "&:hover": {
+                      background: (theme) =>
+                        theme.palette.mode === "dark" ? "#212329" : "#e6e7eb",
+                    },
+                  },
+                  "&::-webkit-scrollbar-track": {
+                    background: (theme) =>
+                      theme.palette.mode === "dark" ? "#1f2229" : "#fff",
+                  },
                 }}
               >
                 <Trade />
@@ -381,7 +430,10 @@ const Index = () => {
             justifyContent: "center",
           }}
         >
-          <Box className="exchange-summary-login" sx={{ display: "flex" }}>
+          <Box
+            className="exchange-summary-login"
+            sx={{ display: "flex", color: "text.primary" }}
+          >
             <Box sx={{ color: "primary.main" }}>Log In</Box>
             <span>&nbsp;or&nbsp;</span>
             <Box sx={{ color: "primary.main" }}>Sign Up</Box>

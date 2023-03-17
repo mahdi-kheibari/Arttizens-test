@@ -75,6 +75,21 @@ const Trade = () => {
             alignItems: "flex-end",
             overflow: "hidden",
             "&:hover": { overflowX: "scroll" },
+            "&::-webkit-scrollbar": {
+              width: "5px",
+            },
+            "&::-webkit-scrollbar-thumb": {
+              background: (theme) =>
+                theme.palette.mode === "dark" ? "#909399" : "#79797a",
+              "&:hover": {
+                background: (theme) =>
+                  theme.palette.mode === "dark" ? "#212329" : "#e6e7eb",
+              },
+            },
+            "&::-webkit-scrollbar-track": {
+              background: (theme) =>
+                theme.palette.mode === "dark" ? "#1f2229" : "#fff",
+            },
           }}
         >
           <div>

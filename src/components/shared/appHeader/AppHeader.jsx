@@ -18,6 +18,7 @@ import ListItems from "../../listItems/ListItems";
 import PopoverItem from "../../listItems/popoverItem/PopoverItem";
 import VolumeUpOutlinedIcon from "@mui/icons-material/VolumeUpOutlined";
 import NightlightOutlinedIcon from "@mui/icons-material/NightlightOutlined";
+import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import CloudDownloadOutlinedIcon from "@mui/icons-material/CloudDownloadOutlined";
 import LanguageIcon from "@mui/icons-material/Language";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -25,9 +26,10 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import "./appHeader.scss";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
-
-const AppHeader = () => {
-  const { headerItems } = useContext(store);
+import { useTheme } from "@emotion/react";
+const AppHeader = ({ changeThemeMode }) => {
+  const theme = useTheme();
+  const { headerItems, toggleColorMode } = useContext(store);
   const [drawer, setDrawer] = useState(false);
   const [drawerItemClick, setDrawerItemClick] = useState("");
   const [drawerCollapseItem, setDrawerCollapseItem] = useState({
@@ -35,7 +37,6 @@ const AppHeader = () => {
     Finance: false,
     Promotion: false,
   });
-
   function drawerItemClicked(text, collapse) {
     if (drawerItemClick === text) {
       setDrawerItemClick("");
@@ -67,7 +68,9 @@ const AppHeader = () => {
           sx={{
             width: "122px",
             height: "30px",
-            background: "url('/logo-black.svg')",
+            background: `url('/logo-${
+              theme.palette.mode === "light" ? "black" : "white"
+            }.svg')`,
             backgroundRepeat: "no-repeat",
             backgroundSize: "contain",
             mr: "10px",
@@ -135,8 +138,13 @@ const AppHeader = () => {
         <IconButton
           sx={{ "&:hover": { color: "primary.main" } }}
           aria-label="theme"
+          onClick={() => changeThemeMode(toggleColorMode(theme.palette.mode))}
         >
-          <NightlightOutlinedIcon fontSize="small" />
+          {theme.palette.mode === "dark" ? (
+            <LightModeOutlinedIcon fontSize="small" />
+          ) : (
+            <NightlightOutlinedIcon fontSize="small" />
+          )}
         </IconButton>
         <IconButton
           sx={{ "&:hover": { color: "primary.main" } }}
