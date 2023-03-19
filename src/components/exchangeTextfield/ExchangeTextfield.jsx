@@ -5,19 +5,22 @@ const ExchangeTextfield = ({ prepend, append, value, class_name }) => {
   return (
     <Paper
       component="form"
-      className={class_name}
+      className={`${class_name} font-14`}
       sx={{
         display: "flex",
         alignItems: "center",
         width: "100%",
-        backgroundColor: "gray_light.main",
+        backgroundColor: (theme) =>
+          theme.palette.mode === "light"
+            ? "bgColor.secondary"
+            : "gray_light.main",
         borderRadius: "4px",
         border: "1px solid",
         borderColor: "light.main",
         px: "20px",
         py: 0,
         borderColor: (theme) =>
-          theme.palette.mode === "light" ? "light.main" : "dark.main",
+          theme.palette.mode === "light" ? "light.main" : "#1d1f24",
         "&:hover": {
           borderColor: "primary.main",
         },
@@ -26,7 +29,10 @@ const ExchangeTextfield = ({ prepend, append, value, class_name }) => {
       elevation={0}
     >
       <Box sx={{ pr: 1, display: "flex", alignItems: "center" }}>
-        <Box className="font-14" sx={{ color: "gray.main", minWidth: "50px" }}>
+        <Box
+          className="font-14"
+          sx={{ color: "gray.main", minWidth: "50px", fontWeight: "bold" }}
+        >
           {prepend}
         </Box>
         <Box

@@ -8,7 +8,10 @@ const LoginBtn = () => {
       sx={{
         textTransform: "initial",
         color: "gray.main",
-        bgcolor: "gray_light.main",
+        bgcolor: (theme) =>
+          theme.palette.mode === "light"
+            ? "bgColor.secondary"
+            : "gray_light.main",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",

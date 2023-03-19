@@ -1,26 +1,9 @@
 import React from "react";
-import { Slider } from "@mui/material";
 import { Box } from "@mui/system";
 import ExchangeTextfield from "../../../exchangeTextfield/ExchangeTextfield";
+import TradeSlider from "../tradeSlider/TradeSlider";
 
 const Margin = ({ class_name }) => {
-  const marks = [
-    {
-      value: 0,
-    },
-    {
-      value: 25,
-    },
-    {
-      value: 50,
-    },
-    {
-      value: 75,
-    },
-    {
-      value: 100,
-    },
-  ];
   return (
     <>
       <Box className="font-12" sx={{ color: "gray.main" }}>
@@ -41,16 +24,7 @@ const Margin = ({ class_name }) => {
           class_name={class_name}
         />
       </Box>
-      <Slider
-        defaultValue={0}
-        getAriaValueText={(val) => `${val}%`}
-        valueLabelDisplay="auto"
-        step={1}
-        marks={marks}
-        min={0}
-        max={100}
-        color="warning"
-      />
+      <TradeSlider varient={"danger"} />
       <ExchangeTextfield
         prepend="Value"
         append="USDT"

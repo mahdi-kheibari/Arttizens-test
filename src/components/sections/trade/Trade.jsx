@@ -10,8 +10,10 @@ import TuneOutlinedIcon from "@mui/icons-material/TuneOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import Spot from "./spot/Spot";
 import Margin from "./spot/Margin";
+import { useTheme } from "@emotion/react";
 
 const Trade = () => {
+  const theme = useTheme();
   const [tradeHeaderActive, setTradeHeaderActive] = useState("Spot Trading");
   const [tradeTagActive, setTradeTagActive] = useState("Limit");
   const [advancedTagActive, setAdvancedTagActive] = useState("AL");
@@ -98,7 +100,9 @@ const Trade = () => {
                 text="Limit"
                 activeState={tradeTagActive}
                 setActiveState={(val) => setTradeTagActive(val)}
-                class_name="exchange-trade-placeholder_tag"
+                class_name={`exchange-trade-placeholder_tag exchange-trade-placeholder_tag_${
+                  theme.palette.mode === "light" ? "light" : "dark"
+                }`}
               />
             </Box>
             <Box
@@ -119,7 +123,9 @@ const Trade = () => {
                 text="Market"
                 activeState={tradeTagActive}
                 setActiveState={(val) => setTradeTagActive(val)}
-                class_name="exchange-trade-placeholder_tag"
+                class_name={`exchange-trade-placeholder_tag exchange-trade-placeholder_tag_${
+                  theme.palette.mode === "light" ? "light" : "dark"
+                }`}
               />
             </Box>
             <Box
@@ -140,7 +146,9 @@ const Trade = () => {
                 text="Stop-Limit"
                 activeState={tradeTagActive}
                 setActiveState={(val) => setTradeTagActive(val)}
-                class_name="exchange-trade-placeholder_tag"
+                class_name={`exchange-trade-placeholder_tag exchange-trade-placeholder_tag_${
+                  theme.palette.mode === "light" ? "light" : "dark"
+                }`}
               />
             </Box>
             <Box
@@ -161,7 +169,9 @@ const Trade = () => {
                 text="Stop-Market"
                 activeState={tradeTagActive}
                 setActiveState={(val) => setTradeTagActive(val)}
-                class_name="exchange-trade-placeholder_tag"
+                class_name={`exchange-trade-placeholder_tag exchange-trade-placeholder_tag_${
+                  theme.palette.mode === "light" ? "light" : "dark"
+                }`}
               />
             </Box>
             <Box sx={{ display: { xs: "none", md: "block", lg: "none" } }}>
@@ -184,7 +194,7 @@ const Trade = () => {
               text={"AL"}
               activeState={advancedTagActive}
               setActiveState={(val) => setAdvancedTagActive(val)}
-              class_name=""
+              class_name="exchange-trade-header_filter"
             >
               <span>AL</span>
               <ExpandMore fontSize="small" />
@@ -193,13 +203,13 @@ const Trade = () => {
               text={"M"}
               activeState={advancedTagActive}
               setActiveState={(val) => setAdvancedTagActive(val)}
-              class_name=""
+              class_name="exchange-trade-header_filter"
             />
             <ExchangeBtn
               text={"hidden"}
               activeState={advancedTagActive}
               setActiveState={(val) => setAdvancedTagActive(val)}
-              class_name=""
+              class_name="exchange-trade-header_filter"
             >
               <VisibilityOffOutlinedIcon fontSize="small" />
             </ExchangeBtn>

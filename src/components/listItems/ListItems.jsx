@@ -54,6 +54,7 @@ const ListItems = ({ children, text, popover }) => {
               sx={{
                 boxShadow: "0 2px 12px 0 rgb(0 0 0 / 10%) !important",
                 borderRadius: "20px",
+                bgcolor:"bgColor.main"
               }}
             >
               <MenuList

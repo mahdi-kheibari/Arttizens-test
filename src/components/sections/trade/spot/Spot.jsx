@@ -1,25 +1,9 @@
 import React from "react";
-import { Box, Slider } from "@mui/material";
+import { Box } from "@mui/material";
 import ExchangeTextfield from "../../../exchangeTextfield/ExchangeTextfield";
+import TradeSlider from "../tradeSlider/TradeSlider";
 
 const Spot = ({ class_name }) => {
-  const marks = [
-    {
-      value: 0,
-    },
-    {
-      value: 25,
-    },
-    {
-      value: 50,
-    },
-    {
-      value: 75,
-    },
-    {
-      value: 100,
-    },
-  ];
   return (
     <>
       <Box className="font-12" sx={{ color: "gray.main" }}>
@@ -40,15 +24,7 @@ const Spot = ({ class_name }) => {
           class_name={class_name}
         />
       </Box>
-      <Slider
-        defaultValue={0}
-        getAriaValueText={(val) => `${val}%`}
-        valueLabelDisplay="auto"
-        step={1}
-        marks={marks}
-        min={0}
-        max={100}
-      />
+      <TradeSlider varient={"primary"} />
       <ExchangeTextfield
         prepend="Value"
         append="USDT"

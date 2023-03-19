@@ -83,19 +83,20 @@ export const getDesignPalette = (mode) => ({
             ? {
                 // palette values for light mode
                 primary: { main: '#0cae96' },
-                primary_light: { main: '#6cfbdb' },
+                primary_light: { main: '#1bbeb2' },
                 secondary: { main: '#28272c' },
                 success: { main: '#22C157' },
                 info: { main: '#6072FB' },
-                warning: { main: '#fd9350' },
-                danger: { main: '#FB6072' },
+                warning: { main: '#f38b2c' },
+                danger: { main: '#db5541' },
                 gray: { main: '#79797a' },
                 gray_light: { main: '#e6e7eb' },
-                bgColor: { main: '#F4F5F7' },
+                bgColor: { main: '#FAFBFC', secondary: "#F8F8FA" },
                 light: { main: '#fff' },
                 dark: { main: '#1f2229' },
                 white: { main: '#fff' },
                 muted: { main: '#6c757d' },
+                sliderBg: { main: "#e6e7eb" },
                 text: {
                     ...theme.palette.text,
                     primary: "#28272c",
@@ -124,12 +125,12 @@ export const getDesignPalette = (mode) => ({
             : {
                 // palette values for dark mode
                 primary: { main: '#0cae96' },
-                primary_light: { main: '#6cfbdb' },
+                primary_light: { main: '#1bbeb2' },
                 secondary: { main: '#f9fbfe' },
                 success: { main: '#22C157' },
                 info: { main: '#6072FB' },
-                warning: { main: '#fd9150' },
-                danger: { main: '#FB6072' },
+                warning: { main: '#f38b2c' },
+                danger: { main: '#db5541' },
                 gray: { main: '#909399' },
                 gray_light: { main: '#212329' },
                 bgColor: { main: '#1a191f' },
@@ -137,6 +138,7 @@ export const getDesignPalette = (mode) => ({
                 dark: { main: '#1f2229' },
                 white: { main: '#fff' },
                 muted: { main: '#6c757d' },
+                sliderBg: { main: "#464a52" },
                 text: {
                     ...theme.palette.text,
                     primary: "#f9fbfe",

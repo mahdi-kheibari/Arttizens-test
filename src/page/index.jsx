@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Grid from "@mui/material/Grid";
 import { Box } from "@mui/system";
-import { DataGrid } from "@mui/x-data-grid";
 import { IconButton, InputBase, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import "./index.scss";
@@ -14,6 +13,7 @@ import ExchangeTab from "../components/exchangeTab/ExchangeTab";
 import Orderbook from "../components/sections/orderbook/Orderbook";
 import MarketQuota from "../components/sections/marketQuota/MarketQuota";
 import Trade from "../components/sections/trade/Trade";
+import DataTable from "../components/dataTable/DataTable";
 const Index = () => {
   const [tagActive, setTagActive] = useState("All");
   const [navAreaActive, setNavAreaActive] = useState("USDT");
@@ -42,6 +42,7 @@ const Index = () => {
             borderBottomColor: "gray_light.main",
             borderRight: "1px solid",
             borderRightColor: "gray_light.main",
+            bgcolor: "bgColor.secondary",
           }}
           lg={3}
           className="exchange-market"
@@ -61,8 +62,12 @@ const Index = () => {
               }}
               elevation={0}
             >
-              <IconButton type="button" sx={{ p: 0 }} aria-label="search">
-                <SearchIcon />
+              <IconButton
+                type="button"
+                sx={{ p: 0, color: "text.primary" }}
+                aria-label="search"
+              >
+                <SearchIcon fontSize="small" />
               </IconButton>
               <InputBase sx={{ ml: 1, flex: 1 }} placeholder="Search" />
             </Paper>
@@ -108,7 +113,7 @@ const Index = () => {
                 }}
                 className="nav-area_icon"
               >
-                <StarIcon fontSize="small" color="gray" />
+                <StarIcon fontSize="small" sx={{ color: "#b4b7bd" }} />
               </Box>
               <ExchangeTab
                 text={"USDT"}
@@ -138,36 +143,7 @@ const Index = () => {
           </Box>
           <Box sx={{ display: "flex", flexDirection: "column" }}>
             <div className="exchange-market-list">
-              <DataGrid
-                rows={exchangeListRow}
-                columns={exchangeListColumn}
-                hideFooter
-                sx={{
-                  "& .MuiDataGrid-columnHeaders": {
-                    width: "100%",
-                    p: "12px 16px 6px",
-                    fontSize: "12px",
-                    color: "gray.main",
-                    height: "auto",
-                    minHeight: "auto !important",
-                    lineHeight: "normal !important",
-                    borderColor: "gray_light.main",
-                  },
-                  "& .MuiDataGrid-columnHeader": {
-                    height: "auto !important",
-                  },
-                  "& .MuiDataGrid-columnHeadersInner": {
-                    width: "100%",
-                    "& > div": { width: "100%" },
-                  },
-                  "& [aria-label='Price']": {
-                    ml: "auto",
-                  },
-                  minHeight: "100%",
-                  borderRight: "0",
-                  borderColor: "gray_light.main",
-                }}
-              />
+              <DataTable rows={exchangeListRow} columns={exchangeListColumn} />
             </div>
             <div className="exchange-market-quota">
               <MarketQuota
@@ -188,6 +164,8 @@ const Index = () => {
               width: "100%",
               borderBottom: "1px solid",
               borderBottomColor: "gray_light.main",
+              backgroundColor: (theme) =>
+                theme.palette.mode === "light" ? "#FAFBFC" : "bgColor.main",
             }}
           >
             <Box
@@ -299,6 +277,10 @@ const Index = () => {
               xs={12}
               md={8}
               sx={{
+                backgroundColor: (theme) =>
+                  theme.palette.mode === "light"
+                    ? "light.main"
+                    : "bgColor.main",
                 borderRight: "1px solid",
                 borderRightColor: "gray_light.main",
                 height: "100%",

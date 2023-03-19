@@ -109,12 +109,13 @@ const AppHeader = ({ changeThemeMode }) => {
         </Box>
       </Box>
       <Box sx={{ display: { xs: "none", xl: "flex" } }}>
-        <Box sx={{ display: "flex", mx: "20px" }}>
+        <Box sx={{ display: "flex", alignItems: "center", mx: "20px" }}>
           <Button
             variant="text"
             color="secondary"
             sx={{
               textTransform: "unset",
+              height: "29px",
               "&:hover": { color: "primary.main" },
             }}
           >
@@ -123,20 +124,27 @@ const AppHeader = ({ changeThemeMode }) => {
           <Button
             variant="contained"
             color="primary"
-            sx={{ textTransform: "unset", color: "white.main", p: "4px 24px" }}
+            sx={{
+              textTransform: "unset",
+              color: "white.main",
+              p: "4px 24px",
+              lineHeight: "unset",
+              height: "29px",
+              "&:hover": { backgroundColor: "primary_light.main" },
+            }}
             disableElevation
           >
-            Sign Up
+            <span>Sign Up</span>
           </Button>
         </Box>
         <IconButton
-          sx={{ "&:hover": { color: "primary.main" } }}
+          sx={{ color: "text.primary", "&:hover": { color: "primary.main" } }}
           aria-label="report"
         >
           <VolumeUpOutlinedIcon fontSize="small" />
         </IconButton>
         <IconButton
-          sx={{ "&:hover": { color: "primary.main" } }}
+          sx={{ color: "text.primary", "&:hover": { color: "primary.main" } }}
           aria-label="theme"
           onClick={() => changeThemeMode(toggleColorMode(theme.palette.mode))}
         >
@@ -147,7 +155,7 @@ const AppHeader = ({ changeThemeMode }) => {
           )}
         </IconButton>
         <IconButton
-          sx={{ "&:hover": { color: "primary.main" } }}
+          sx={{ color: "text.primary", "&:hover": { color: "primary.main" } }}
           aria-label="download"
         >
           <CloudDownloadOutlinedIcon fontSize="small" />
@@ -155,8 +163,8 @@ const AppHeader = ({ changeThemeMode }) => {
         <Button
           variant="text"
           sx={{
+            color: "text.primary",
             "&:hover": { color: "primary.main" },
-            color: "gray.main",
             textTransform: "unset",
           }}
         >

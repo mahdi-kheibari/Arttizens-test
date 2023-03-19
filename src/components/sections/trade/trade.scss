@@ -7,6 +7,12 @@
         justify-content: space-between;
         padding-left: 18px;
         padding-right: 18px;
+
+        &_filter {
+            margin-left: 2px !important;
+            margin-right: 2px !important;
+            background-color: #f7f8fa !important;
+        }
     }
 
     &-placeholder {
@@ -24,6 +30,14 @@
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
+
+            &_light {
+                background-color: #f7f8fa !important;
+            }
+
+            &_dark {
+                background-color: #1d1f24 !important;
+            }
         }
 
         &_input {

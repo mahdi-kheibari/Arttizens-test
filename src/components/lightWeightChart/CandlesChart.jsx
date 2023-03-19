@@ -12,7 +12,7 @@ const CandlesChart = (props) => {
   const {
     data = [],
     colors: {
-      backgroundColor = theme.palette.mode === "light" ? "#F4F5F7" : "#1a191f",
+      backgroundColor = theme.palette.mode === "light" ? "#fff" : "#161A25",
       textColor = theme.palette.mode === "light" ? "#79797a" : "#909399",
       upColor = "#0EAD98",
       downColor = "#FA5252",
@@ -33,7 +33,7 @@ const CandlesChart = (props) => {
         background: { type: ColorType.Solid, color: backgroundColor },
         textColor,
       },
-      width: chartContainerRef.current.clientWidth,
+      width: chartContainerRef.current.clientWidth - 11,
       height: 350,
       grid: {
         vertLines: {
@@ -70,7 +70,7 @@ const CandlesChart = (props) => {
           background: { type: ColorType.Solid, color: backgroundColor },
           textColor,
         },
-        width: chartContainerRef.current.clientWidth,
+        width: chartContainerRef.current.clientWidth - 11,
         height: volumeContainerRef.current.clientHeight,
         grid: {
           vertLines: {
@@ -208,9 +208,15 @@ const CandlesChart = (props) => {
           onClick={() => setVolume(!volume)}
         >
           {volume ? (
-            <CropDinOutlinedIcon fontSize="small" color="secondary.main" />
+            <CropDinOutlinedIcon
+              fontSize="small"
+              sx={{ color: "text.primary" }}
+            />
           ) : (
-            <Crop32OutlinedIcon fontSize="small" color="secondary.main" />
+            <Crop32OutlinedIcon
+              fontSize="small"
+              sx={{ color: "text.primary" }}
+            />
           )}
         </Box>
         <Box
@@ -220,6 +226,7 @@ const CandlesChart = (props) => {
             top: 0,
             right: 0,
             zIndex: 2,
+            pl: "10px",
           }}
           ref={chartContainerRef}
         ></Box>
@@ -237,6 +244,7 @@ const CandlesChart = (props) => {
               borderTopColor: "gray_light.main",
               position: "absolute",
               top: "350px",
+              pl: "10px",
             }}
             ref={volumeContainerRef}
           ></Box>

@@ -21,10 +21,11 @@ const ExchangeBtn = ({
           theme.palette.mode === "light"
             ? activeState === text
               ? "rgba(14, 173, 152, .1) !important"
-              : "gray_light.main"
+              : "bgColor.secondary"
             : activeState === text
             ? "rgba(14, 173, 152, .1) !important"
             : "#1f2229 !important",
+        fontWeight:"bold",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
