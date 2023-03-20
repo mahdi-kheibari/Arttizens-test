@@ -316,21 +316,23 @@ const Index = () => {
                 <Trade />
               </Box>
               <Grid
-                sx={{ display: { xs: "none", md: "flex", lg: "none" } }}
+                sx={{
+                  display: { xs: "none", md: "flex", lg: "none" },
+                  height: "400px",
+                }}
                 container
                 spacing={0}
               >
-                <Grid item md={6}>
+                <Grid item md={6} sx={{ height: "fit-content" }}>
                   <MarketQuota
                     rowList={exchangeListRow}
                     columnsList={exchangeQuotaList}
                   />
                 </Grid>
                 <Grid item md={6}>
-                  <Orderbook
-                    rowList={exchangeListRow}
-                    columnsList={exchangeQuotaList}
-                  />
+                  <Box sx={{ height: "100%" }}>
+                    <Orderbook />
+                  </Box>
                 </Grid>
               </Grid>
             </Grid>
@@ -340,11 +342,10 @@ const Index = () => {
               md={4}
               sx={{ height: "100%", display: { xs: "none", md: "block" } }}
             >
-              <Box sx={{ display: { xs: "none", lg: "block" } }}>
-                <Orderbook
-                  rowList={exchangeListRow}
-                  columnsList={exchangeQuotaList}
-                />
+              <Box
+                sx={{ display: { xs: "none", lg: "block" }, height: "100%" }}
+              >
+                <Orderbook />
               </Box>
               <Box sx={{ display: { xs: "none", md: "block", lg: "none" } }}>
                 <Trade />

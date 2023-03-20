@@ -5,8 +5,15 @@ import Crop32OutlinedIcon from "@mui/icons-material/Crop32Outlined";
 import CropDinOutlinedIcon from "@mui/icons-material/CropDinOutlined";
 import "./candlesChart.scss";
 import { useTheme } from "@mui/material";
+import { useDispatch } from "react-redux";
+import {
+  addBottomInfo,
+  addTopInfo,
+  removeAllInfo,
+} from "../../store/redux/chart/chartSlice";
 const CandlesChart = (props) => {
   const theme = useTheme();
+  const dispatch = useDispatch();
   const [volumeValue, setVolumeValue] = useState(0);
   const [volume, setVolume] = useState(true);
   const {
@@ -105,18 +112,49 @@ const CandlesChart = (props) => {
         borderColor: theme.palette.mode === "light" ? "#e6e7eb" : "#212329",
       });
     }
+    // for orderbook data table
+    function addOrderbookInfo(bar, id) {
+      if (bar.color === "#0EAD98") {
+        dispatch(
+          addTopInfo({
+            info: {
+              price: parseFloat(bar.close).toFixed(2),
+              amount: parseFloat((bar.close + bar.open) / 2).toFixed(2),
+              time: bar.time.day,
+              id,
+            },
+          })
+        );
+      } else {
+        dispatch(
+          addBottomInfo({
+            info: {
+              price: parseFloat(bar.open).toFixed(2),
+              amount: parseFloat((bar.close + bar.open) / 2).toFixed(2),
+              time: bar.time.day,
+              id,
+            },
+          })
+        );
+      }
+    }
     // create data for test
     for (let i = 0; i < 150; i++) {
+      if (i === 0) dispatch(removeAllInfo());
       const bar = nextBar();
       newSeries.update(bar);
+      addOrderbookInfo(bar, i);
       if (volume) {
         volumeSeries.update(bar);
         if (i === 149) setVolumeValue(bar.close);
       }
     }
+    let id = 150;
     setInterval(() => {
       const bar = nextBar();
       newSeries.update(bar);
+      addOrderbookInfo(bar, id);
+      id++;
       if (volume) {
         volumeSeries.update(bar);
         setVolumeValue(bar.close);

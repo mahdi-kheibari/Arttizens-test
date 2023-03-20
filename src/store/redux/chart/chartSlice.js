@@ -13,10 +13,14 @@ export const chartSlice = createSlice({
         addBottomInfo(state, action) {
             state.bottomPriceInfo = [...state.bottomPriceInfo, action.payload.info]
         },
+        removeAllInfo(state) {
+            state.bottomPriceInfo = []
+            state.topPriceInfo = []
+        },
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { addTopInfo, addBottomInfo } = chartSlice.actions
+export const { addTopInfo, addBottomInfo, removeAllInfo } = chartSlice.actions
 
 export default chartSlice.reducer
